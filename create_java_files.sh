@@ -434,119 +434,286 @@
 # }
 # EOF
 
-cat > ReverseString.java <<EOF
-// Program 1: Reverse a String
-import java.util.Scanner;
+# cat > ReverseString.java <<EOF
+# // Program 1: Reverse a String
+# import java.util.Scanner;
 
-public class ReverseString {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a string: ");
-        String original = scanner.nextLine();
-        String reversed = new StringBuilder(original).reverse().toString();
-        System.out.println("Reversed string: " + reversed);
-        scanner.close();
-    }
-}
-EOF
+# public class ReverseString {
+#     public static void main(String[] args) {
+#         Scanner scanner = new Scanner(System.in);
+#         System.out.print("Enter a string: ");
+#         String original = scanner.nextLine();
+#         String reversed = new StringBuilder(original).reverse().toString();
+#         System.out.println("Reversed string: " + reversed);
+#         scanner.close();
+#     }
+# }
+# EOF
 
-cat > StringPalindrome.java <<EOF
-// Program 2: Check if a String is a Palindrome
-import java.util.Scanner;
+# cat > StringPalindrome.java <<EOF
+# // Program 2: Check if a String is a Palindrome
+# import java.util.Scanner;
 
-public class StringPalindrome {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a string: ");
-        String original = scanner.nextLine();
-        String reversed = new StringBuilder(original).reverse().toString();
-        if (original.equals(reversed)) {
-            System.out.println(original + " is a Palindrome.");
-        } else {
-            System.out.println(original + " is not a Palindrome.");
-        }
-        scanner.close();
-    }
-}
-EOF
+# public class StringPalindrome {
+#     public static void main(String[] args) {
+#         Scanner scanner = new Scanner(System.in);
+#         System.out.print("Enter a string: ");
+#         String original = scanner.nextLine();
+#         String reversed = new StringBuilder(original).reverse().toString();
+#         if (original.equals(reversed)) {
+#             System.out.println(original + " is a Palindrome.");
+#         } else {
+#             System.out.println(original + " is not a Palindrome.");
+#         }
+#         scanner.close();
+#     }
+# }
+# EOF
 
-cat > VowelConsonantCount.java <<EOF
-// Program 3: Count Vowels and Consonants
-import java.util.Scanner;
+# cat > VowelConsonantCount.java <<EOF
+# // Program 3: Count Vowels and Consonants
+# import java.util.Scanner;
 
-public class VowelConsonantCount {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a string: ");
-        String input = scanner.nextLine().toLowerCase();
-        int vowels = 0, consonants = 0;
-        for (char c : input.toCharArray()) {
-            if (Character.isLetter(c)) {
-                if ("aeiou".indexOf(c) != -1)
-                    vowels++;
-                else
-                    consonants++;
-            }
-        }
-        System.out.println("Vowels: " + vowels);
-        System.out.println("Consonants: " + consonants);
-        scanner.close();
-    }
-}
-EOF
+# public class VowelConsonantCount {
+#     public static void main(String[] args) {
+#         Scanner scanner = new Scanner(System.in);
+#         System.out.print("Enter a string: ");
+#         String input = scanner.nextLine().toLowerCase();
+#         int vowels = 0, consonants = 0;
+#         for (char c : input.toCharArray()) {
+#             if (Character.isLetter(c)) {
+#                 if ("aeiou".indexOf(c) != -1)
+#                     vowels++;
+#                 else
+#                     consonants++;
+#             }
+#         }
+#         System.out.println("Vowels: " + vowels);
+#         System.out.println("Consonants: " + consonants);
+#         scanner.close();
+#     }
+# }
+# EOF
 
-cat > AnagramCheck.java <<EOF
-// Program 4: Check if Two Strings are Anagrams
-import java.util.Arrays;
-import java.util.Scanner;
+# cat > AnagramCheck.java <<EOF
+# // Program 4: Check if Two Strings are Anagrams
+# import java.util.Arrays;
+# import java.util.Scanner;
 
-public class AnagramCheck {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter first string: ");
-        String str1 = scanner.nextLine().replaceAll("\\s", "").toLowerCase();
-        System.out.print("Enter second string: ");
-        String str2 = scanner.nextLine().replaceAll("\\s", "").toLowerCase();
-        if (str1.length() != str2.length()) {
-            System.out.println("Not Anagrams");
-        } else {
-            char[] arr1 = str1.toCharArray();
-            char[] arr2 = str2.toCharArray();
-            Arrays.sort(arr1);
-            Arrays.sort(arr2);
-            if (Arrays.equals(arr1, arr2))
-                System.out.println("Anagrams");
-            else
-                System.out.println("Not Anagrams");
-        }
-        scanner.close();
-    }
-}
-EOF
+# public class AnagramCheck {
+#     public static void main(String[] args) {
+#         Scanner scanner = new Scanner(System.in);
+#         System.out.print("Enter first string: ");
+#         String str1 = scanner.nextLine().replaceAll("\\s", "").toLowerCase();
+#         System.out.print("Enter second string: ");
+#         String str2 = scanner.nextLine().replaceAll("\\s", "").toLowerCase();
+#         if (str1.length() != str2.length()) {
+#             System.out.println("Not Anagrams");
+#         } else {
+#             char[] arr1 = str1.toCharArray();
+#             char[] arr2 = str2.toCharArray();
+#             Arrays.sort(arr1);
+#             Arrays.sort(arr2);
+#             if (Arrays.equals(arr1, arr2))
+#                 System.out.println("Anagrams");
+#             else
+#                 System.out.println("Not Anagrams");
+#         }
+#         scanner.close();
+#     }
+# }
+# EOF
 
-cat > RemoveDuplicates.java <<EOF
-// Program 5: Remove Duplicate Characters from a String
-import java.util.LinkedHashSet;
-import java.util.Scanner;
-import java.util.Set;
+# cat > RemoveDuplicates.java <<EOF
+# // Program 5: Remove Duplicate Characters from a String
+# import java.util.LinkedHashSet;
+# import java.util.Scanner;
+# import java.util.Set;
 
-public class RemoveDuplicates {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a string: ");
-        String input = scanner.nextLine();
-        Set<Character> set = new LinkedHashSet<>();
-        for (char c : input.toCharArray()) {
-            set.add(c);
-        }
-        StringBuilder result = new StringBuilder();
-        for (char c : set) {
-            result.append(c);
-        }
-        System.out.println("String after removing duplicates: " + result.toString());
-        scanner.close();
-    }
-}
-EOF
+# public class RemoveDuplicates {
+#     public static void main(String[] args) {
+#         Scanner scanner = new Scanner(System.in);
+#         System.out.print("Enter a string: ");
+#         String input = scanner.nextLine();
+#         Set<Character> set = new LinkedHashSet<>();
+#         for (char c : input.toCharArray()) {
+#             set.add(c);
+#         }
+#         StringBuilder result = new StringBuilder();
+#         for (char c : set) {
+#             result.append(c);
+#         }
+#         System.out.println("String after removing duplicates: " + result.toString());
+#         scanner.close();
+#     }
+# }
+# EOF
 
  
+cat > ArrayLargestSmallestArray.java <<EOF
+// Program 1: Find the Largest and Smallest Element in an Array
+import java.util.Scanner;
+
+public class ArrayLargestSmallestArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter number of elements: ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        int largest = arr[0];
+        int smallest = arr[0];
+        for (int i = 1; i < n; i++) {
+            if (arr[i] > largest)
+                largest = arr[i];
+            if (arr[i] < smallest)
+                smallest = arr[i];
+        }
+        System.out.println("Largest: " + largest);
+        System.out.println("Smallest: " + smallest);
+        scanner.close();
+    }
+}
+EOF
+
+cat > ArraySortArray.java <<EOF
+// Program 2: Sort an Array (Bubble Sort and Selection Sort)
+import java.util.Scanner;
+
+public class ArraySortArray {
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // swap arr[j] and arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void selectionSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            int min_idx = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[min_idx])
+                    min_idx = j;
+            }
+            // Swap the found minimum element with the first element
+            int temp = arr[min_idx];
+            arr[min_idx] = arr[i];
+            arr[i] = temp;
+        }
+    }
+
+    public static void printArray(int[] arr) {
+        for (int num : arr)
+            System.out.print(num + " ");
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter number of elements: ");
+        int n = scanner.nextInt();
+        int[] arr1 = new int[n];
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            arr1[i] = scanner.nextInt();
+        }
+        int[] arr2 = arr1.clone();
+
+        bubbleSort(arr1);
+        System.out.print("Array after Bubble Sort: ");
+        printArray(arr1);
+
+        selectionSort(arr2);
+        System.out.print("Array after Selection Sort: ");
+        printArray(arr2);
+
+        scanner.close();
+    }
+}
+EOF
+
+cat > ArrayReverseArray.java <<EOF
+// Program 3: Reverse an Array
+import java.util.Scanner;
+
+public class ArrayReverseArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter number of elements: ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        System.out.print("Reversed Array: ");
+        for (int i = n - 1; i >= 0; i--) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        scanner.close();
+    }
+}
+EOF
+
+cat > ArrayDuplicateElementsArray.java <<EOF
+// Program 4: Find Duplicate Elements in an Array
+import java.util.Scanner;
+
+public class ArrayDuplicateElementsArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter number of elements: ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        System.out.println("Duplicate elements:");
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (arr[i] == arr[j]) {
+                    System.out.println(arr[i]);
+                    break;
+                }
+            }
+        }
+        scanner.close();
+    }
+}
+EOF
+
+cat > ArraySumArray.java <<EOF
+// Program 5: Sum of All Elements in an Array
+import java.util.Scanner;
+
+public class ArraySumArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter number of elements: ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        int sum = 0;
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+            sum += arr[i];
+        }
+        System.out.println("Sum of all elements: " + sum);
+        scanner.close();
+    }
+}
+EOF
