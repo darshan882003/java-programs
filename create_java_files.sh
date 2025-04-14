@@ -550,170 +550,158 @@
 # EOF
 
  
-cat > ArrayLargestSmallestArray.java <<EOF
-// Program 1: Find the Largest and Smallest Element in an Array
-import java.util.Scanner;
+# cat > OopsClassObjectExample.java <<EOF
+// Program 1: Class and Object Example
+class Car {
+    String model;
+    int year;
 
-public class ArrayLargestSmallestArray {
+    void displayDetails() {
+        System.out.println("Model: " + model + ", Year: " + year);
+    }
+}
+
+public class OopsClassObjectExample {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter number of elements: ");
-        int n = scanner.nextInt();
-        int[] arr = new int[n];
-        System.out.println("Enter " + n + " integers:");
-        for (int i = 0; i < n; i++) {
-            arr[i] = scanner.nextInt();
-        }
-        int largest = arr[0];
-        int smallest = arr[0];
-        for (int i = 1; i < n; i++) {
-            if (arr[i] > largest)
-                largest = arr[i];
-            if (arr[i] < smallest)
-                smallest = arr[i];
-        }
-        System.out.println("Largest: " + largest);
-        System.out.println("Smallest: " + smallest);
-        scanner.close();
+        Car car1 = new Car();
+        car1.model = "Toyota";
+        car1.year = 2020;
+        car1.displayDetails();
     }
 }
 EOF
 
-cat > ArraySortArray.java <<EOF
-// Program 2: Sort an Array (Bubble Sort and Selection Sort)
-import java.util.Scanner;
+cat > OopsConstructorOverloading.java <<EOF
+// Program 2: Constructor Overloading
+class Book {
+    String title;
+    String author;
 
-public class ArraySortArray {
-    public static void bubbleSort(int[] arr) {
-        int n = arr.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    // swap arr[j] and arr[j+1]
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
-        }
+    Book(String t) {
+        title = t;
     }
 
-    public static void selectionSort(int[] arr) {
-        int n = arr.length;
-        for (int i = 0; i < n - 1; i++) {
-            int min_idx = i;
-            for (int j = i + 1; j < n; j++) {
-                if (arr[j] < arr[min_idx])
-                    min_idx = j;
-            }
-            // Swap the found minimum element with the first element
-            int temp = arr[min_idx];
-            arr[min_idx] = arr[i];
-            arr[i] = temp;
-        }
+    Book(String t, String a) {
+        title = t;
+        author = a;
     }
 
-    public static void printArray(int[] arr) {
-        for (int num : arr)
-            System.out.print(num + " ");
-        System.out.println();
+    void displayInfo() {
+        System.out.println("Title: " + title + ", Author: " + author);
     }
+}
 
+public class OopsConstructorOverloading {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter number of elements: ");
-        int n = scanner.nextInt();
-        int[] arr1 = new int[n];
-        System.out.println("Enter " + n + " integers:");
-        for (int i = 0; i < n; i++) {
-            arr1[i] = scanner.nextInt();
-        }
-        int[] arr2 = arr1.clone();
-
-        bubbleSort(arr1);
-        System.out.print("Array after Bubble Sort: ");
-        printArray(arr1);
-
-        selectionSort(arr2);
-        System.out.print("Array after Selection Sort: ");
-        printArray(arr2);
-
-        scanner.close();
+        Book book1 = new Book("Java Basics");
+        Book book2 = new Book("Advanced Java", "John Doe");
+        book1.displayInfo();
+        book2.displayInfo();
     }
 }
 EOF
 
-cat > ArrayReverseArray.java <<EOF
-// Program 3: Reverse an Array
-import java.util.Scanner;
+cat > OopsMethodOverloadingOverriding.java <<EOF
+// Program 3: Method Overloading and Overriding
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
 
-public class ArrayReverseArray {
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+
+    void sound(String type) {
+        System.out.println("Dog barks " + type);
+    }
+}
+
+public class OopsMethodOverloadingOverriding {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter number of elements: ");
-        int n = scanner.nextInt();
-        int[] arr = new int[n];
-        System.out.println("Enter " + n + " integers:");
-        for (int i = 0; i < n; i++) {
-            arr[i] = scanner.nextInt();
-        }
-        System.out.print("Reversed Array: ");
-        for (int i = n - 1; i >= 0; i--) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
-        scanner.close();
+        Animal animal = new Animal();
+        animal.sound();
+        Dog dog = new Dog();
+        dog.sound();
+        dog.sound("loudly");
     }
 }
 EOF
 
-cat > ArrayDuplicateElementsArray.java <<EOF
-// Program 4: Find Duplicate Elements in an Array
-import java.util.Scanner;
+cat > OopsInheritanceExample.java <<EOF
+// Program 4: Inheritance
+class Vehicle {
+    void start() {
+        System.out.println("Vehicle is starting");
+    }
+}
 
-public class ArrayDuplicateElementsArray {
+class Bike extends Vehicle {
+    void stop() {
+        System.out.println("Bike is stopping");
+    }
+}
+
+public class OopsInheritanceExample {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter number of elements: ");
-        int n = scanner.nextInt();
-        int[] arr = new int[n];
-        System.out.println("Enter " + n + " integers:");
-        for (int i = 0; i < n; i++) {
-            arr[i] = scanner.nextInt();
-        }
-        System.out.println("Duplicate elements:");
-        boolean found = false;
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                if (arr[i] == arr[j]) {
-                    System.out.println(arr[i]);
-                    break;
-                }
-            }
-        }
-        scanner.close();
+        Bike bike = new Bike();
+        bike.start();
+        bike.stop();
     }
 }
 EOF
 
-cat > ArraySumArray.java <<EOF
-// Program 5: Sum of All Elements in an Array
-import java.util.Scanner;
+cat > OopsAbstractionEncapsulation.java <<EOF
+// Program 5: Abstraction and Encapsulation
+abstract class Shape {
+    abstract void draw();
+}
 
-public class ArraySumArray {
+class Circle extends Shape {
+    private double radius;
+
+    Circle(double r) {
+        radius = r;
+    }
+
+    @Override
+    void draw() {
+        System.out.println("Drawing Circle with radius: " + radius);
+    }
+}
+
+public class OopsAbstractionEncapsulation {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter number of elements: ");
-        int n = scanner.nextInt();
-        int[] arr = new int[n];
-        int sum = 0;
-        System.out.println("Enter " + n + " integers:");
-        for (int i = 0; i < n; i++) {
-            arr[i] = scanner.nextInt();
-            sum += arr[i];
-        }
-        System.out.println("Sum of all elements: " + sum);
-        scanner.close();
+        Shape shape = new Circle(5.0);
+        shape.draw();
+    }
+}
+EOF
+
+cat > OopsPolymorphismExample.java <<EOF
+// Program 6: Polymorphism
+class Printer {
+    void print() {
+        System.out.println("Printing document");
+    }
+}
+
+class PhotoPrinter extends Printer {
+    @Override
+    void print() {
+        System.out.println("Printing photo");
+    }
+}
+
+public class OopsPolymorphismExample {
+    public static void main(String[] args) {
+        Printer printer = new Printer();
+        printer.print();
+        Printer photoPrinter = new PhotoPrinter();
+        photoPrinter.print();
     }
 }
 EOF
