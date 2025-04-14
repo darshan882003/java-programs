@@ -551,157 +551,229 @@
 
  
 # cat > OopsClassObjectExample.java <<EOF
-// Program 1: Class and Object Example
-class Car {
-    String model;
-    int year;
+# // Program 1: Class and Object Example
+# class Car {
+#     String model;
+#     int year;
 
-    void displayDetails() {
-        System.out.println("Model: " + model + ", Year: " + year);
-    }
-}
+#     void displayDetails() {
+#         System.out.println("Model: " + model + ", Year: " + year);
+#     }
+# }
 
-public class OopsClassObjectExample {
+# public class OopsClassObjectExample {
+#     public static void main(String[] args) {
+#         Car car1 = new Car();
+#         car1.model = "Toyota";
+#         car1.year = 2020;
+#         car1.displayDetails();
+#     }
+# }
+# EOF
+
+# cat > OopsConstructorOverloading.java <<EOF
+# // Program 2: Constructor Overloading
+# class Book {
+#     String title;
+#     String author;
+
+#     Book(String t) {
+#         title = t;
+#     }
+
+#     Book(String t, String a) {
+#         title = t;
+#         author = a;
+#     }
+
+#     void displayInfo() {
+#         System.out.println("Title: " + title + ", Author: " + author);
+#     }
+# }
+
+# public class OopsConstructorOverloading {
+#     public static void main(String[] args) {
+#         Book book1 = new Book("Java Basics");
+#         Book book2 = new Book("Advanced Java", "John Doe");
+#         book1.displayInfo();
+#         book2.displayInfo();
+#     }
+# }
+# EOF
+
+# cat > OopsMethodOverloadingOverriding.java <<EOF
+# // Program 3: Method Overloading and Overriding
+# class Animal {
+#     void sound() {
+#         System.out.println("Animal makes a sound");
+#     }
+# }
+
+# class Dog extends Animal {
+#     @Override
+#     void sound() {
+#         System.out.println("Dog barks");
+#     }
+
+#     void sound(String type) {
+#         System.out.println("Dog barks " + type);
+#     }
+# }
+
+# public class OopsMethodOverloadingOverriding {
+#     public static void main(String[] args) {
+#         Animal animal = new Animal();
+#         animal.sound();
+#         Dog dog = new Dog();
+#         dog.sound();
+#         dog.sound("loudly");
+#     }
+# }
+# EOF
+
+# cat > OopsInheritanceExample.java <<EOF
+# // Program 4: Inheritance
+# class Vehicle {
+#     void start() {
+#         System.out.println("Vehicle is starting");
+#     }
+# }
+
+# class Bike extends Vehicle {
+#     void stop() {
+#         System.out.println("Bike is stopping");
+#     }
+# }
+
+# public class OopsInheritanceExample {
+#     public static void main(String[] args) {
+#         Bike bike = new Bike();
+#         bike.start();
+#         bike.stop();
+#     }
+# }
+# EOF
+
+# cat > OopsAbstractionEncapsulation.java <<EOF
+# // Program 5: Abstraction and Encapsulation
+# abstract class Shape {
+#     abstract void draw();
+# }
+
+# class Circle extends Shape {
+#     private double radius;
+
+#     Circle(double r) {
+#         radius = r;
+#     }
+
+#     @Override
+#     void draw() {
+#         System.out.println("Drawing Circle with radius: " + radius);
+#     }
+# }
+
+# public class OopsAbstractionEncapsulation {
+#     public static void main(String[] args) {
+#         Shape shape = new Circle(5.0);
+#         shape.draw();
+#     }
+# }
+# EOF
+
+# cat > OopsPolymorphismExample.java <<EOF
+# // Program 6: Polymorphism
+# class Printer {
+#     void print() {
+#         System.out.println("Printing document");
+#     }
+# }
+
+# class PhotoPrinter extends Printer {
+#     @Override
+#     void print() {
+#         System.out.println("Printing photo");
+#     }
+# }
+
+# public class OopsPolymorphismExample {
+#     public static void main(String[] args) {
+#         Printer printer = new Printer();
+#         printer.print();
+#         Printer photoPrinter = new PhotoPrinter();
+#         photoPrinter.print();
+#     }
+# }
+# EOF
+cat > FileHandlingReadFromFile.java <<EOF
+// Program 1: Read from a File
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class FileHandlingReadFromFile {
     public static void main(String[] args) {
-        Car car1 = new Car();
-        car1.model = "Toyota";
-        car1.year = 2020;
-        car1.displayDetails();
+        try {
+            File file = new File("input.txt");
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                System.out.println(scanner.nextLine());
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred while reading the file.");
+            e.printStackTrace();
+        }
     }
 }
 EOF
 
-cat > OopsConstructorOverloading.java <<EOF
-// Program 2: Constructor Overloading
-class Book {
-    String title;
-    String author;
+cat > FileHandlingWriteToFile.java <<EOF
+// Program 2: Write to a File
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
-    Book(String t) {
-        title = t;
-    }
-
-    Book(String t, String a) {
-        title = t;
-        author = a;
-    }
-
-    void displayInfo() {
-        System.out.println("Title: " + title + ", Author: " + author);
-    }
-}
-
-public class OopsConstructorOverloading {
+public class FileHandlingWriteToFile {
     public static void main(String[] args) {
-        Book book1 = new Book("Java Basics");
-        Book book2 = new Book("Advanced Java", "John Doe");
-        book1.displayInfo();
-        book2.displayInfo();
+        try {
+            File file = new File("output.txt");
+            FileWriter writer = new FileWriter(file);
+            writer.write("Hello, this is a test message.\n");
+            writer.write("Writing to a file in Java is simple.");
+            writer.close();
+            System.out.println("Successfully written to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing to the file.");
+            e.printStackTrace();
+        }
     }
 }
 EOF
 
-cat > OopsMethodOverloadingOverriding.java <<EOF
-// Program 3: Method Overloading and Overriding
-class Animal {
-    void sound() {
-        System.out.println("Animal makes a sound");
-    }
-}
+cat > FileHandlingCopyFileContents.java <<EOF
+// Program 3: Copy Contents of One File to Another
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
-class Dog extends Animal {
-    @Override
-    void sound() {
-        System.out.println("Dog barks");
-    }
-
-    void sound(String type) {
-        System.out.println("Dog barks " + type);
-    }
-}
-
-public class OopsMethodOverloadingOverriding {
+public class FileHandlingCopyFileContents {
     public static void main(String[] args) {
-        Animal animal = new Animal();
-        animal.sound();
-        Dog dog = new Dog();
-        dog.sound();
-        dog.sound("loudly");
-    }
-}
-EOF
-
-cat > OopsInheritanceExample.java <<EOF
-// Program 4: Inheritance
-class Vehicle {
-    void start() {
-        System.out.println("Vehicle is starting");
-    }
-}
-
-class Bike extends Vehicle {
-    void stop() {
-        System.out.println("Bike is stopping");
-    }
-}
-
-public class OopsInheritanceExample {
-    public static void main(String[] args) {
-        Bike bike = new Bike();
-        bike.start();
-        bike.stop();
-    }
-}
-EOF
-
-cat > OopsAbstractionEncapsulation.java <<EOF
-// Program 5: Abstraction and Encapsulation
-abstract class Shape {
-    abstract void draw();
-}
-
-class Circle extends Shape {
-    private double radius;
-
-    Circle(double r) {
-        radius = r;
-    }
-
-    @Override
-    void draw() {
-        System.out.println("Drawing Circle with radius: " + radius);
-    }
-}
-
-public class OopsAbstractionEncapsulation {
-    public static void main(String[] args) {
-        Shape shape = new Circle(5.0);
-        shape.draw();
-    }
-}
-EOF
-
-cat > OopsPolymorphismExample.java <<EOF
-// Program 6: Polymorphism
-class Printer {
-    void print() {
-        System.out.println("Printing document");
-    }
-}
-
-class PhotoPrinter extends Printer {
-    @Override
-    void print() {
-        System.out.println("Printing photo");
-    }
-}
-
-public class OopsPolymorphismExample {
-    public static void main(String[] args) {
-        Printer printer = new Printer();
-        printer.print();
-        Printer photoPrinter = new PhotoPrinter();
-        photoPrinter.print();
+        try {
+            FileReader reader = new FileReader("input.txt");
+            FileWriter writer = new FileWriter("copy.txt");
+            int character;
+            while ((character = reader.read()) != -1) {
+                writer.write(character);
+            }
+            reader.close();
+            writer.close();
+            System.out.println("File copied successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while copying the file.");
+            e.printStackTrace();
+        }
     }
 }
 EOF
