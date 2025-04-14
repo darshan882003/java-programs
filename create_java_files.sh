@@ -705,74 +705,111 @@
 #     }
 # }
 # EOF
-cat > FileHandlingReadFromFile.java <<EOF
-// Program 1: Read from a File
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+# cat > FileHandlingReadFromFile.java <<EOF
+# // Program 1: Read from a File
+# import java.io.File;
+# import java.io.FileNotFoundException;
+# import java.util.Scanner;
 
-public class FileHandlingReadFromFile {
+# public class FileHandlingReadFromFile {
+#     public static void main(String[] args) {
+#         try {
+#             File file = new File("input.txt");
+#             Scanner scanner = new Scanner(file);
+#             while (scanner.hasNextLine()) {
+#                 System.out.println(scanner.nextLine());
+#             }
+#             scanner.close();
+#         } catch (FileNotFoundException e) {
+#             System.out.println("An error occurred while reading the file.");
+#             e.printStackTrace();
+#         }
+#     }
+# }
+# EOF
+
+# cat > FileHandlingWriteToFile.java <<EOF
+# // Program 2: Write to a File
+# import java.io.File;
+# import java.io.FileWriter;
+# import java.io.IOException;
+
+# public class FileHandlingWriteToFile {
+#     public static void main(String[] args) {
+#         try {
+#             File file = new File("output.txt");
+#             FileWriter writer = new FileWriter(file);
+#             writer.write("Hello, this is a test message.\n");
+#             writer.write("Writing to a file in Java is simple.");
+#             writer.close();
+#             System.out.println("Successfully written to the file.");
+#         } catch (IOException e) {
+#             System.out.println("An error occurred while writing to the file.");
+#             e.printStackTrace();
+#         }
+#     }
+# }
+# EOF
+
+# cat > FileHandlingCopyFileContents.java <<EOF
+# // Program 3: Copy Contents of One File to Another
+# import java.io.File;
+# import java.io.FileReader;
+# import java.io.FileWriter;
+# import java.io.IOException;
+
+# public class FileHandlingCopyFileContents {
+#     public static void main(String[] args) {
+#         try {
+#             FileReader reader = new FileReader("input.txt");
+#             FileWriter writer = new FileWriter("copy.txt");
+#             int character;
+#             while ((character = reader.read()) != -1) {
+#                 writer.write(character);
+#             }
+#             reader.close();
+#             writer.close();
+#             System.out.println("File copied successfully.");
+#         } catch (IOException e) {
+#             System.out.println("An error occurred while copying the file.");
+#             e.printStackTrace();
+#         }
+#     }
+# }
+# EOF
+
+cat > ExceptionHandlingTryCatchFinally.java <<EOF
+// Program 1: Try-Catch-Finally Block
+public class ExceptionHandlingTryCatchFinally {
     public static void main(String[] args) {
         try {
-            File file = new File("input.txt");
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                System.out.println(scanner.nextLine());
-            }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred while reading the file.");
-            e.printStackTrace();
+            int result = 10 / 0; // This will cause ArithmeticException
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Division by zero is not allowed.");
+        } finally {
+            System.out.println("This block always executes.");
         }
     }
 }
 EOF
 
-cat > FileHandlingWriteToFile.java <<EOF
-// Program 2: Write to a File
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
-public class FileHandlingWriteToFile {
-    public static void main(String[] args) {
-        try {
-            File file = new File("output.txt");
-            FileWriter writer = new FileWriter(file);
-            writer.write("Hello, this is a test message.\n");
-            writer.write("Writing to a file in Java is simple.");
-            writer.close();
-            System.out.println("Successfully written to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred while writing to the file.");
-            e.printStackTrace();
-        }
+cat > ExceptionHandlingCustomException.java <<EOF
+// Program 2: Custom Exception Example
+class InvalidAgeException extends Exception {
+    public InvalidAgeException(String message) {
+        super(message);
     }
 }
-EOF
 
-cat > FileHandlingCopyFileContents.java <<EOF
-// Program 3: Copy Contents of One File to Another
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-
-public class FileHandlingCopyFileContents {
+public class ExceptionHandlingCustomException {
     public static void main(String[] args) {
         try {
-            FileReader reader = new FileReader("input.txt");
-            FileWriter writer = new FileWriter("copy.txt");
-            int character;
-            while ((character = reader.read()) != -1) {
-                writer.write(character);
+            int age = -5;
+            if (age < 0) {
+                throw new InvalidAgeException("Age cannot be negative.");
             }
-            reader.close();
-            writer.close();
-            System.out.println("File copied successfully.");
-        } catch (IOException e) {
-            System.out.println("An error occurred while copying the file.");
-            e.printStackTrace();
+        } catch (InvalidAgeException e) {
+            System.out.println("Custom Exception Caught: " + e.getMessage());
         }
     }
 }
