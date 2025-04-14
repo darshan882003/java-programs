@@ -566,317 +566,844 @@
 # EOF
 
 
-cat > stack_queue_stack_array_dsa.java <<EOF
-// Stack and Queue: Implement a Stack using Arrays
-public class stack_queue_stack_array_dsa {
-    static class Stack {
-        private int maxSize;
-        private int[] stackArray;
-        private int top;
+# cat > stack_queue_stack_array_dsa.java <<EOF
+# // Stack and Queue: Implement a Stack using Arrays
+# public class stack_queue_stack_array_dsa {
+#     static class Stack {
+#         private int maxSize;
+#         private int[] stackArray;
+#         private int top;
 
-        public Stack(int size) {
-            maxSize = size;
-            stackArray = new int[maxSize];
-            top = -1;
-        }
+#         public Stack(int size) {
+#             maxSize = size;
+#             stackArray = new int[maxSize];
+#             top = -1;
+#         }
 
-        public void push(int value) {
-            if (top == maxSize - 1) {
-                System.out.println("Stack overflow");
-                return;
-            }
-            stackArray[++top] = value;
-        }
+#         public void push(int value) {
+#             if (top == maxSize - 1) {
+#                 System.out.println("Stack overflow");
+#                 return;
+#             }
+#             stackArray[++top] = value;
+#         }
 
-        public int pop() {
-            if (top == -1) {
-                System.out.println("Stack underflow");
-                return -1;
-            }
-            return stackArray[top--];
-        }
+#         public int pop() {
+#             if (top == -1) {
+#                 System.out.println("Stack underflow");
+#                 return -1;
+#             }
+#             return stackArray[top--];
+#         }
 
-        public int peek() {
-            if (top == -1) {
-                System.out.println("Stack is empty");
-                return -1;
-            }
-            return stackArray[top];
-        }
+#         public int peek() {
+#             if (top == -1) {
+#                 System.out.println("Stack is empty");
+#                 return -1;
+#             }
+#             return stackArray[top];
+#         }
 
-        public boolean isEmpty() {
-            return top == -1;
-        }
+#         public boolean isEmpty() {
+#             return top == -1;
+#         }
+#     }
+# }
+# EOF
+
+# cat > stack_queue_queue_using_stacks_dsa.java <<EOF
+# // Stack and Queue: Implement a Queue using Stacks
+# import java.util.Stack;
+
+# public class stack_queue_queue_using_stacks_dsa {
+#     static class Queue {
+#         Stack<Integer> stack1 = new Stack<>();
+#         Stack<Integer> stack2 = new Stack<>();
+
+#         public void enqueue(int x) {
+#             stack1.push(x);
+#         }
+
+#         public int dequeue() {
+#             if (stack2.isEmpty()) {
+#                 while (!stack1.isEmpty()) {
+#                     stack2.push(stack1.pop());
+#                 }
+#             }
+#             if (stack2.isEmpty()) {
+#                 System.out.println("Queue is empty");
+#                 return -1;
+#             }
+#             return stack2.pop();
+#         }
+#     }
+# }
+# EOF
+
+# cat > stack_queue_balanced_parentheses_dsa.java <<EOF
+# // Stack and Queue: Check for Balanced Parentheses in an Expression
+# import java.util.Stack;
+
+# public class stack_queue_balanced_parentheses_dsa {
+#     public static boolean isBalanced(String expr) {
+#         Stack<Character> stack = new Stack<>();
+#         for (char ch : expr.toCharArray()) {
+#             if (ch == '(' || ch == '{' || ch == '[') {
+#                 stack.push(ch);
+#             } else if (ch == ')' && !stack.isEmpty() && stack.peek() == '(') {
+#                 stack.pop();
+#             } else if (ch == '}' && !stack.isEmpty() && stack.peek() == '{') {
+#                 stack.pop();
+#             } else if (ch == ']' && !stack.isEmpty() && stack.peek() == '[') {
+#                 stack.pop();
+#             } else if (ch == ')' || ch == '}' || ch == ']') {
+#                 return false;
+#             }
+#         }
+#         return stack.isEmpty();
+#     }
+# }
+# EOF
+
+# cat > stack_queue_postfix_evaluation_dsa.java <<EOF
+# // Stack and Queue: Evaluate a Postfix Expression
+# import java.util.Stack;
+
+# public class stack_queue_postfix_evaluation_dsa {
+#     public static int evaluatePostfix(String expr) {
+#         Stack<Integer> stack = new Stack<>();
+#         for (char ch : expr.toCharArray()) {
+#             if (Character.isDigit(ch)) {
+#                 stack.push(ch - '0');
+#             } else {
+#                 int val2 = stack.pop();
+#                 int val1 = stack.pop();
+#                 switch (ch) {
+#                     case '+': stack.push(val1 + val2); break;
+#                     case '-': stack.push(val1 - val2); break;
+#                     case '*': stack.push(val1 * val2); break;
+#                     case '/': stack.push(val1 / val2); break;
+#                 }
+#             }
+#         }
+#         return stack.pop();
+#     }
+# }
+# EOF
+
+# cat > stack_queue_generate_binary_numbers_dsa.java <<EOF
+# // Stack and Queue: Generate Binary Numbers from 1 to N using a Queue
+# import java.util.LinkedList;
+# import java.util.Queue;
+
+# public class stack_queue_generate_binary_numbers_dsa {
+#     public static void generateBinaryNumbers(int n) {
+#         Queue<String> queue = new LinkedList<>();
+#         queue.add("1");
+#         for (int i = 0; i < n; i++) {
+#             String s = queue.remove();
+#             System.out.println(s);
+#             queue.add(s + "0");
+#             queue.add(s + "1");
+#         }
+#     }
+# }
+# EOF
+
+# cat > stack_queue_circular_queue_dsa.java <<EOF
+# // Stack and Queue: Implement a Circular Queue
+# public class stack_queue_circular_queue_dsa {
+#     static class CircularQueue {
+#         private int size, front, rear;
+#         private int[] queue;
+
+#         public CircularQueue(int size) {
+#             this.size = size;
+#             queue = new int[size];
+#             front = rear = -1;
+#         }
+
+#         public void enqueue(int value) {
+#             if ((rear + 1) % size == front) {
+#                 System.out.println("Queue is full");
+#                 return;
+#             }
+#             if (front == -1) front = 0;
+#             rear = (rear + 1) % size;
+#             queue[rear] = value;
+#         }
+
+#         public int dequeue() {
+#             if (front == -1) {
+#                 System.out.println("Queue is empty");
+#                 return -1;
+#             }
+#             int data = queue[front];
+#             if (front == rear) {
+#                 front = rear = -1;
+#             } else {
+#                 front = (front + 1) % size;
+#             }
+#             return data;
+#         }
+#     }
+# }
+# EOF
+
+# cat > stack_queue_min_stack_dsa.java <<EOF
+# // Stack and Queue: Design a Stack that Supports Push, Pop, Top, and Retrieving the Minimum Element in Constant Time
+# import java.util.Stack;
+
+# public class stack_queue_min_stack_dsa {
+#     static class MinStack {
+#         Stack<Integer> stack = new Stack<>();
+#         Stack<Integer> minStack = new Stack<>();
+
+#         public void push(int x) {
+#             stack.push(x);
+#             if (minStack.isEmpty() || x <= minStack.peek()) {
+#                 minStack.push(x);
+#             }
+#         }
+
+#         public void pop() {
+#             if (stack.pop().equals(minStack.peek())) {
+#                 minStack.pop();
+#             }
+#         }
+
+#         public int top() {
+#             return stack.peek();
+#         }
+
+#         public int getMin() {
+#             return minStack.peek();
+#         }
+#     }
+# }
+# EOF
+
+# cat > stack_queue_priority_queue_dsa.java <<EOF
+# // Stack and Queue: Implement a Priority Queue
+# import java.util.PriorityQueue;
+
+# public class stack_queue_priority_queue_dsa {
+#     public static void main(String[] args) {
+#         PriorityQueue<Integer> pq = new PriorityQueue<>();
+#         pq.add(10);
+#         pq.add(5);
+#         pq.add(20);
+#         while (!pq.isEmpty()) {
+#             System.out.println(pq.poll());
+#         }
+#     }
+# }
+# EOF
+
+# cat > stack_queue_sort_stack_dsa.java <<EOF
+# // Stack and Queue: Sort a Stack
+# import java.util.Stack;
+
+# public class stack_queue_sort_stack_dsa {
+#     public static void sortStack(Stack<Integer> input) {
+#         Stack<Integer> tempStack = new Stack<>();
+#         while (!input.isEmpty()) {
+#             int temp = input.pop();
+#             while (!tempStack.isEmpty() && tempStack.peek() > temp) {
+#                 input.push(tempStack.pop());
+#             }
+#             tempStack.push(temp);
+#         }
+#         // Transfer back to input stack if needed
+#         while (!tempStack.isEmpty()) {
+#             input.push(tempStack.pop());
+#         }
+#     }
+
+#     public static void main(String[] args) {
+#         Stack<Integer> stack = new Stack<>();
+#         stack.push(34);
+#         stack.push(3);
+#         stack.push(31);
+#         stack.push(98);
+#         stack.push(92);
+#         stack.push(23);
+
+#         System.out.println("Original Stack: " + stack);
+#         sortStack(stack);
+#         System.out.println("Sorted Stack: " + stack);
+#     }
+# }
+# EOF
+
+# cat > stack_queue_queue_using_two_stacks_dsa.java <<EOF
+# // Stack and Queue: Implement a Queue using Two Stacks
+# import java.util.Stack;
+
+# public class stack_queue_queue_using_two_stacks_dsa {
+#     static class Queue {
+#         Stack<Integer> stack1 = new Stack<>();
+#         Stack<Integer> stack2 = new Stack<>();
+
+#         public void enqueue(int x) {
+#             stack1.push(x);
+#         }
+
+#         public int dequeue() {
+#             if (stack2.isEmpty()) {
+#                 while (!stack1.isEmpty()) {
+#                     stack2.push(stack1.pop());
+#                 }
+#             }
+#             if (stack2.isEmpty()) {
+#                 System.out.println("Queue is empty");
+#                 return -1;
+#             }
+#             return stack2.pop();
+#         }
+
+#         public boolean isEmpty() {
+#             return stack1.isEmpty() && stack2.isEmpty();
+#         }
+#     }
+
+#     public static void main(String[] args) {
+#         Queue q = new Queue();
+#         q.enqueue(10);
+#         q.enqueue(20);
+#         q.enqueue(30);
+#         System.out.println(q.dequeue()); // 10
+#         System.out.println(q.dequeue()); // 20
+#         q.enqueue(40);
+#         System.out.println(q.dequeue()); // 30
+#         System.out.println(q.dequeue()); // 40
+#     }
+# }
+# EOF
+
+
+cat > binary_tree_traversals_dsa.java <<EOF
+// Binary Tree: Implement a binary tree and perform inorder, preorder, and postorder traversals
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
     }
 }
-EOF
 
-cat > stack_queue_queue_using_stacks_dsa.java <<EOF
-// Stack and Queue: Implement a Queue using Stacks
-import java.util.Stack;
+public class binary_tree_traversals_dsa {
+    Node root;
 
-public class stack_queue_queue_using_stacks_dsa {
-    static class Queue {
-        Stack<Integer> stack1 = new Stack<>();
-        Stack<Integer> stack2 = new Stack<>();
-
-        public void enqueue(int x) {
-            stack1.push(x);
-        }
-
-        public int dequeue() {
-            if (stack2.isEmpty()) {
-                while (!stack1.isEmpty()) {
-                    stack2.push(stack1.pop());
-                }
-            }
-            if (stack2.isEmpty()) {
-                System.out.println("Queue is empty");
-                return -1;
-            }
-            return stack2.pop();
-        }
+    void inorder(Node node) {
+        if (node == null)
+            return;
+        inorder(node.left);
+        System.out.print(node.data + " ");
+        inorder(node.right);
     }
-}
-EOF
 
-cat > stack_queue_balanced_parentheses_dsa.java <<EOF
-// Stack and Queue: Check for Balanced Parentheses in an Expression
-import java.util.Stack;
-
-public class stack_queue_balanced_parentheses_dsa {
-    public static boolean isBalanced(String expr) {
-        Stack<Character> stack = new Stack<>();
-        for (char ch : expr.toCharArray()) {
-            if (ch == '(' || ch == '{' || ch == '[') {
-                stack.push(ch);
-            } else if (ch == ')' && !stack.isEmpty() && stack.peek() == '(') {
-                stack.pop();
-            } else if (ch == '}' && !stack.isEmpty() && stack.peek() == '{') {
-                stack.pop();
-            } else if (ch == ']' && !stack.isEmpty() && stack.peek() == '[') {
-                stack.pop();
-            } else if (ch == ')' || ch == '}' || ch == ']') {
-                return false;
-            }
-        }
-        return stack.isEmpty();
+    void preorder(Node node) {
+        if (node == null)
+            return;
+        System.out.print(node.data + " ");
+        preorder(node.left);
+        preorder(node.right);
     }
-}
-EOF
 
-cat > stack_queue_postfix_evaluation_dsa.java <<EOF
-// Stack and Queue: Evaluate a Postfix Expression
-import java.util.Stack;
-
-public class stack_queue_postfix_evaluation_dsa {
-    public static int evaluatePostfix(String expr) {
-        Stack<Integer> stack = new Stack<>();
-        for (char ch : expr.toCharArray()) {
-            if (Character.isDigit(ch)) {
-                stack.push(ch - '0');
-            } else {
-                int val2 = stack.pop();
-                int val1 = stack.pop();
-                switch (ch) {
-                    case '+': stack.push(val1 + val2); break;
-                    case '-': stack.push(val1 - val2); break;
-                    case '*': stack.push(val1 * val2); break;
-                    case '/': stack.push(val1 / val2); break;
-                }
-            }
-        }
-        return stack.pop();
+    void postorder(Node node) {
+        if (node == null)
+            return;
+        postorder(node.left);
+        postorder(node.right);
+        System.out.print(node.data + " ");
     }
-}
-EOF
 
-cat > stack_queue_generate_binary_numbers_dsa.java <<EOF
-// Stack and Queue: Generate Binary Numbers from 1 to N using a Queue
-import java.util.LinkedList;
-import java.util.Queue;
-
-public class stack_queue_generate_binary_numbers_dsa {
-    public static void generateBinaryNumbers(int n) {
-        Queue<String> queue = new LinkedList<>();
-        queue.add("1");
-        for (int i = 0; i < n; i++) {
-            String s = queue.remove();
-            System.out.println(s);
-            queue.add(s + "0");
-            queue.add(s + "1");
-        }
-    }
-}
-EOF
-
-cat > stack_queue_circular_queue_dsa.java <<EOF
-// Stack and Queue: Implement a Circular Queue
-public class stack_queue_circular_queue_dsa {
-    static class CircularQueue {
-        private int size, front, rear;
-        private int[] queue;
-
-        public CircularQueue(int size) {
-            this.size = size;
-            queue = new int[size];
-            front = rear = -1;
-        }
-
-        public void enqueue(int value) {
-            if ((rear + 1) % size == front) {
-                System.out.println("Queue is full");
-                return;
-            }
-            if (front == -1) front = 0;
-            rear = (rear + 1) % size;
-            queue[rear] = value;
-        }
-
-        public int dequeue() {
-            if (front == -1) {
-                System.out.println("Queue is empty");
-                return -1;
-            }
-            int data = queue[front];
-            if (front == rear) {
-                front = rear = -1;
-            } else {
-                front = (front + 1) % size;
-            }
-            return data;
-        }
-    }
-}
-EOF
-
-cat > stack_queue_min_stack_dsa.java <<EOF
-// Stack and Queue: Design a Stack that Supports Push, Pop, Top, and Retrieving the Minimum Element in Constant Time
-import java.util.Stack;
-
-public class stack_queue_min_stack_dsa {
-    static class MinStack {
-        Stack<Integer> stack = new Stack<>();
-        Stack<Integer> minStack = new Stack<>();
-
-        public void push(int x) {
-            stack.push(x);
-            if (minStack.isEmpty() || x <= minStack.peek()) {
-                minStack.push(x);
-            }
-        }
-
-        public void pop() {
-            if (stack.pop().equals(minStack.peek())) {
-                minStack.pop();
-            }
-        }
-
-        public int top() {
-            return stack.peek();
-        }
-
-        public int getMin() {
-            return minStack.peek();
-        }
-    }
-}
-EOF
-
-cat > stack_queue_priority_queue_dsa.java <<EOF
-// Stack and Queue: Implement a Priority Queue
-import java.util.PriorityQueue;
-
-public class stack_queue_priority_queue_dsa {
     public static void main(String[] args) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        pq.add(10);
-        pq.add(5);
-        pq.add(20);
-        while (!pq.isEmpty()) {
-            System.out.println(pq.poll());
-        }
+        binary_tree_traversals_dsa tree = new binary_tree_traversals_dsa();
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+        tree.root.left.right = new Node(5);
+
+        System.out.print("Inorder traversal: ");
+        tree.inorder(tree.root);
+        System.out.println();
+
+        System.out.print("Preorder traversal: ");
+        tree.preorder(tree.root);
+        System.out.println();
+
+        System.out.print("Postorder traversal: ");
+        tree.postorder(tree.root);
+        System.out.println();
     }
 }
 EOF
 
-cat > stack_queue_sort_stack_dsa.java <<EOF
-// Stack and Queue: Sort a Stack
-import java.util.Stack;
+cat > binary_tree_balanced_check_dsa.java <<EOF
+// Binary Tree: Check if a binary tree is balanced
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
 
-public class stack_queue_sort_stack_dsa {
-    public static void sortStack(Stack<Integer> input) {
-        Stack<Integer> tempStack = new Stack<>();
-        while (!input.isEmpty()) {
-            int temp = input.pop();
-            while (!tempStack.isEmpty() && tempStack.peek() > temp) {
-                input.push(tempStack.pop());
-            }
-            tempStack.push(temp);
-        }
-        // Transfer back to input stack if needed
-        while (!tempStack.isEmpty()) {
-            input.push(tempStack.pop());
-        }
+public class binary_tree_balanced_check_dsa {
+    Node root;
+
+    boolean isBalanced(Node node) {
+        return checkHeight(node) != -1;
+    }
+
+    int checkHeight(Node node) {
+        if (node == null)
+            return 0;
+        int leftHeight = checkHeight(node.left);
+        if (leftHeight == -1)
+            return -1;
+        int rightHeight = checkHeight(node.right);
+        if (rightHeight == -1)
+            return -1;
+        if (Math.abs(leftHeight - rightHeight) > 1)
+            return -1;
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 
     public static void main(String[] args) {
-        Stack<Integer> stack = new Stack<>();
-        stack.push(34);
-        stack.push(3);
-        stack.push(31);
-        stack.push(98);
-        stack.push(92);
-        stack.push(23);
+        binary_tree_balanced_check_dsa tree = new binary_tree_balanced_check_dsa();
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.left.left = new Node(3);
 
-        System.out.println("Original Stack: " + stack);
-        sortStack(stack);
-        System.out.println("Sorted Stack: " + stack);
+        System.out.println("Is tree balanced? " + tree.isBalanced(tree.root));
     }
 }
 EOF
 
-cat > stack_queue_queue_using_two_stacks_dsa.java <<EOF
-// Stack and Queue: Implement a Queue using Two Stacks
-import java.util.Stack;
+cat > binary_tree_height_dsa.java <<EOF
+// Binary Tree: Find the height of a binary tree
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
 
-public class stack_queue_queue_using_two_stacks_dsa {
-    static class Queue {
-        Stack<Integer> stack1 = new Stack<>();
-        Stack<Integer> stack2 = new Stack<>();
+public class binary_tree_height_dsa {
+    Node root;
 
-        public void enqueue(int x) {
-            stack1.push(x);
+    int height(Node node) {
+        if (node == null)
+            return 0;
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    public static void main(String[] args) {
+        binary_tree_height_dsa tree = new binary_tree_height_dsa();
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+
+        System.out.println("Height of tree: " + tree.height(tree.root));
+    }
+}
+EOF
+
+cat > binary_tree_to_dll_dsa.java <<EOF
+// Binary Tree: Convert a binary tree to a doubly linked list
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
+
+public class binary_tree_to_dll_dsa {
+    Node root;
+    Node head;
+    Node prev = null;
+
+    void bToDLL(Node root) {
+        if (root == null)
+            return;
+        bToDLL(root.left);
+        if (prev == null)
+            head = root;
+        else {
+            root.left = prev;
+            prev.right = root;
         }
+        prev = root;
+        bToDLL(root.right);
+    }
 
-        public int dequeue() {
-            if (stack2.isEmpty()) {
-                while (!stack1.isEmpty()) {
-                    stack2.push(stack1.pop());
-                }
-            }
-            if (stack2.isEmpty()) {
-                System.out.println("Queue is empty");
-                return -1;
-            }
-            return stack2.pop();
-        }
-
-        public boolean isEmpty() {
-            return stack1.isEmpty() && stack2.isEmpty();
+    void printList(Node node) {
+        while (node != null) {
+            System.out.print(node.data + " ");
+            node = node.right;
         }
     }
 
     public static void main(String[] args) {
-        Queue q = new Queue();
-        q.enqueue(10);
-        q.enqueue(20);
-        q.enqueue(30);
-        System.out.println(q.dequeue()); // 10
-        System.out.println(q.dequeue()); // 20
-        q.enqueue(40);
-        System.out.println(q.dequeue()); // 30
-        System.out.println(q.dequeue()); // 40
+        binary_tree_to_dll_dsa tree = new binary_tree_to_dll_dsa();
+        tree.root = new Node(10);
+        tree.root.left = new Node(12);
+        tree.root.right = new Node(15);
+        tree.root.left.left = new Node(25);
+        tree.root.left.right = new Node(30);
+        tree.root.right.left = new Node(36);
+
+        tree.bToDLL(tree.root);
+        tree.printList(tree.head);
+    }
+}
+EOF
+
+cat > binary_tree_lca_dsa.java <<EOF
+// Binary Tree: Find the lowest common ancestor of two nodes in a binary tree
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
+
+public class binary_tree_lca_dsa {
+    Node root;
+
+    Node findLCA(Node node, int n1, int n2) {
+        if (node == null)
+            return null;
+        if (node.data == n1 || node.data == n2)
+            return node;
+        Node leftLCA = findLCA(node.left, n1, n2);
+        Node rightLCA = findLCA(node.right, n1, n2);
+        if (leftLCA != null && rightLCA != null)
+            return node;
+        return (leftLCA != null) ? leftLCA : rightLCA;
+    }
+
+    public static void main(String[] args) {
+        binary_tree_lca_dsa tree = new binary_tree_lca_dsa();
+        tree.root = new Node(3);
+        tree.root.left = new Node(5);
+        tree.root.right = new Node(1);
+        tree.root.left.left = new Node(6);
+        tree.root.left.right = new Node(2);
+        tree.root.right.left = new Node(0);
+        tree.root.right.right = new Node(8);
+
+        Node lca = tree.findLCA(tree.root, 6, 2);
+        System.out.println("LCA of 6 and 2 is: " + lca.data);
+    }
+}
+EOF
+
+cat > binary_tree_check_bst_dsa.java <<EOF
+// Binary Tree: Check if a binary tree is a binary search tree (BST)
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
+
+public class binary_tree_check_bst_dsa {
+    Node root;
+
+    boolean isBST(Node node, Integer min, Integer max) {
+        if (node == null)
+            return true;
+        if ((min != null && node.data <= min) || (max != null && node.data >= max))
+            return false;
+        return isBST(node.left, min, node.data) && isBST(node.right, node.data, max);
+    }
+
+    public static void main(String[] args) {
+        binary_tree_check_bst_dsa tree = new binary_tree_check_bst_dsa();
+        tree.root = new Node(10);
+        tree.root.left = new Node(5);
+        tree.root.right = new Node(15);
+        tree.root.left.left = new Node(2);
+        tree.root.left.right = new Node(7);
+        tree.root.right.right = new Node(20);
+
+        System.out.println("Is BST? " + tree.isBST(tree.root, null, null));
+    }
+}
+EOF
+
+cat > binary_tree_construct_from_traversals_dsa.java <<EOF
+// Binary Tree: Construct a binary tree from inorder and preorder traversals
+import java.util.*;
+
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
+
+public class binary_tree_construct_from_traversals_dsa {
+    static int preIndex = 0;
+
+    Node buildTree(int[] inorder, int[] preorder, int inStart, int inEnd, Map<Integer, Integer> inMap) {
+        if (inStart > inEnd)
+            return null;
+
+        int curr = preorder[preIndex++];
+        Node node = new Node(curr);
+
+        if (inStart == inEnd)
+            return node;
+
+        int inIndex = inMap.get(curr);
+
+        node.left = buildTree(inorder, preorder, inStart, inIndex - 1, inMap);
+        node.right = buildTree(inorder, preorder, inIndex + 1, inEnd, inMap);
+
+        return node;
+    }
+
+    void printInorder(Node node) {
+        if (node == null)
+            return;
+        printInorder(node.left);
+        System.out.print(node.data + " ");
+        printInorder(node.right);
+    }
+
+    public static void main(String[] args) {
+        binary_tree_construct_from_traversals_dsa tree = new binary_tree_construct_from_traversals_dsa();
+        int[] inorder = {4, 2, 5, 1, 6, 3};
+        int[] preorder = {1, 2, 4, 5, 3, 6};
+        Map<Integer, Integer> inMap = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++)
+            inMap.put(inorder[i], i);
+
+        Node root = tree.buildTree(inorder, preorder, 0, inorder.length - 1, inMap);
+        System.out.print("Inorder of constructed tree: ");
+        tree.printInorder(root);
+    }
+}
+EOF
+
+cat > binary_tree_serialize_deserialize_dsa.java <<EOF
+// Binary Tree: Serialize and deserialize a binary tree
+import java.util.*;
+
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
+
+public class binary_tree_serialize_deserialize_dsa {
+    static final String NULL_SYMBOL = "#";
+    static final String DELIMITER = ",";
+
+    String serialize(Node root) {
+        StringBuilder sb = new StringBuilder();
+        serializeHelper(root, sb);
+        return sb.toString();
+    }
+
+    void serializeHelper(Node node, StringBuilder sb) {
+        if (node == null) {
+            sb.append(NULL_SYMBOL).append(DELIMITER);
+            return;
+        }
+        sb.append(node.data).append(DELIMITER);
+        serializeHelper(node.left, sb);
+        serializeHelper(node.right, sb);
+    }
+
+    Node deserialize(String data) {
+        Queue<String> nodes = new LinkedList<>(Arrays.asList(data.split(DELIMITER)));
+        return deserializeHelper(nodes);
+    }
+
+    Node deserializeHelper(Queue<String> nodes) {
+        String val = nodes.poll();
+        if (val.equals(NULL_SYMBOL))
+            return null;
+        Node node = new Node(Integer.parseInt(val));
+        node.left = deserializeHelper(nodes);
+        node.right = deserializeHelper(nodes);
+        return node;
+    }
+
+    void inorder(Node node) {
+        if (node == null)
+            return;
+        inorder(node.left);
+        System.out.print(node.data + " ");
+        inorder(node.right);
+    }
+
+    public static void main(String[] args) {
+        binary_tree_serialize_deserialize_dsa tree = new binary_tree_serialize_deserialize_dsa();
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.right.left = new Node(4);
+        root.right.right = new Node(5);
+
+        String serialized = tree.serialize(root);
+        System.out.println("Serialized tree: " + serialized);
+
+        Node deserializedRoot = tree.deserialize(serialized);
+        System.out.print("Inorder of deserialized tree: ");
+        tree.inorder(deserializedRoot);
+    }
+}
+EOF
+
+cat > binary_tree_diameter_dsa.java <<EOF
+// Binary Tree: Find the diameter of a binary tree
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
+
+public class binary_tree_diameter_dsa {
+    Node root;
+    int diameter = 0;
+
+    int height(Node node) {
+        if (node == null)
+            return 0;
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+        diameter = Math.max(diameter, leftHeight + rightHeight);
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    int getDiameter(Node node) {
+        height(node);
+        return diameter;
+    }
+
+    public static void main(String[] args) {
+        binary_tree_diameter_dsa tree = new binary_tree_diameter_dsa();
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+        tree.root.left.right = new Node(5);
+
+        System.out.println("Diameter of the tree: " + tree.getDiameter(tree.root));
+    }
+}
+EOF
+
+cat > binary_tree_bst_to_balanced_dsa.java <<EOF
+// Binary Tree: Convert a BST to a balanced binary tree
+import java.util.*;
+
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
+
+public class binary_tree_bst_to_balanced_dsa {
+    Node root;
+
+    // Function to store nodes of BST in sorted order
+    void storeInorder(Node node, List<Integer> nodes) {
+        if (node == null)
+            return;
+        storeInorder(node.left, nodes);
+        nodes.add(node.data);
+        storeInorder(node.right, nodes);
+    }
+
+    // Function to build balanced BST from sorted list
+    Node buildBalancedBST(List<Integer> nodes, int start, int end) {
+        if (start > end)
+            return null;
+        int mid = (start + end) / 2;
+        Node node = new Node(nodes.get(mid));
+        node.left = buildBalancedBST(nodes, start, mid - 1);
+        node.right = buildBalancedBST(nodes, mid + 1, end);
+        return node;
+    }
+
+    // Function to convert unbalanced BST to balanced BST
+    Node balanceBST(Node root) {
+        List<Integer> nodes = new ArrayList<>();
+        storeInorder(root, nodes);
+        return buildBalancedBST(nodes, 0, nodes.size() - 1);
+    }
+
+    // Function to print inorder traversal of the tree
+    void printInorder(Node node) {
+        if (node == null)
+            return;
+        printInorder(node.left);
+        System.out.print(node.data + " ");
+        printInorder(node.right);
+    }
+
+    public static void main(String[] args) {
+        binary_tree_bst_to_balanced_dsa tree = new binary_tree_bst_to_balanced_dsa();
+        /*
+        Constructing an unbalanced BST:
+                10
+               /
+              8
+             /
+            7
+           /
+          6
+         /
+        5
+        */
+        tree.root = new Node(10);
+        tree.root.left = new Node(8);
+        tree.root.left.left = new Node(7);
+        tree.root.left.left.left = new Node(6);
+        tree.root.left.left.left.left = new Node(5);
+
+        System.out.println("Inorder traversal of original unbalanced BST:");
+        tree.printInorder(tree.root);
+        System.out.println();
+
+        tree.root = tree.balanceBST(tree.root);
+
+        System.out.println("Inorder traversal of balanced BST:");
+        tree.printInorder(tree.root);
+        System.out.println();
     }
 }
 EOF
